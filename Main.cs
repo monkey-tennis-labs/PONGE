@@ -8,7 +8,8 @@ public partial class Main : Node2D
 	public override void _Ready()
 	{
 		_paddle = GetNode<CharacterBody2D>("Paddle");
-		GD.Print(_paddle);
+		var screenSize = GetWindow().Size;
+		_paddle.Position = new Vector2(screenSize.X / 8, screenSize.Y / 2);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
