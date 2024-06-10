@@ -12,18 +12,18 @@ public partial class Main : Node2D
 
 	public override void _Process(double delta)
 	{
-		CheckInput();
+		CheckInput(delta);
 	}
 
-	private void CheckInput()
+	private void CheckInput(double delta)
 	{
 		if (Input.IsKeyPressed(Key.Up))
 		{
-		   _paddle.MoveUp();
+		   _paddle.MoveUp((float) delta);
 		}
 		else if (Input.IsKeyPressed(Key.Down))
 		{
-			_paddle.MoveDown();
+			_paddle.MoveDown((float) delta);
 		}
 	}
 
