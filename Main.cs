@@ -11,7 +11,19 @@ public partial class Main : Node2D
 	
 	public override void _Process(double delta)
 	{
-		
+		CheckInput();
+	}
+
+	private static void CheckInput()
+	{
+		if (Input.IsKeyPressed(Key.Up))
+		{
+			GD.Print("Up pressed!");
+		}
+		else if (Input.IsKeyPressed(Key.Down))
+		{
+			GD.Print("Down pressed!");
+		}
 	}
 
 	private void InitializePaddle()
