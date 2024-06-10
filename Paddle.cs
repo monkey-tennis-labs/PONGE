@@ -12,6 +12,6 @@ public partial class Paddle : CharacterBody2D
 
 	public void MoveDown(float delta)
 	{
-		Position = new Vector2(Position.X, Position.Y - delta * _speed);
+		Position = new Vector2(Position.X, Position.Y + delta * _speed);
 	}
 }
