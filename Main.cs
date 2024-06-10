@@ -3,32 +3,33 @@ using System;
 
 public partial class Main : Node2D
 {
-	private CharacterBody2D _paddle;
+	private Paddle _paddle;
+
 	public override void _Ready()
 	{
 		InitializePaddle();
 	}
-	
+
 	public override void _Process(double delta)
 	{
 		CheckInput();
 	}
 
-	private static void CheckInput()
+	private void CheckInput()
 	{
 		if (Input.IsKeyPressed(Key.Up))
 		{
-			GD.Print("Up pressed!");
+		   _paddle.MoveUp();
 		}
 		else if (Input.IsKeyPressed(Key.Down))
 		{
-			GD.Print("Down pressed!");
+			_paddle.MoveDown();
 		}
 	}
 
 	private void InitializePaddle()
 	{
-		_paddle = GetNode<CharacterBody2D>("Paddle");
+		_paddle = GetNode<Paddle>("Paddle");
 		var screenSize = GetWindow().Size;
 		_paddle.Position = new Vector2(screenSize.X / 8, screenSize.Y / 2);
 	}

@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvnfeejrqfnae"]
+[gd_scene load_steps=3 format=3 uid="uid://cvnfeejrqfnae"]
 
+[ext_resource type="Script" path="res://Paddle.cs" id="1_evlmx"]
 [ext_resource type="Texture2D" uid="uid://cs8h685i28dfo" path="res://art/sprites.png" id="1_xfmru"]
 
 [node name="Paddle" type="CharacterBody2D"]
 motion_mode = 1
+script = ExtResource("1_evlmx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
