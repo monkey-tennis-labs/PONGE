@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bcex5yrbrlicy" path="res://paddle.tscn" id="1_dimub"]
 [ext_resource type="Script" path="res://Main.cs" id="1_dxvld"]
-[ext_resource type="PackedScene" path="res://ball.tscn" id="2_jkhyo"]
+[ext_resource type="PackedScene" uid="uid://b31ubh2fr6atr" path="res://ball.tscn" id="2_jkhyo"]
 [ext_resource type="PackedScene" uid="uid://dw1fvopmot46o" path="res://Boundary.tscn" id="3_7s4m7"]
 
 [node name="Main" type="Node2D"]
