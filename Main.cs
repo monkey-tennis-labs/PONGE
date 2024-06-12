@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class Main : Node2D
@@ -48,7 +49,7 @@ public partial class Main : Node2D
 	private void LaunchBall() {
 		RigidBody2D ball = BallScene.Instantiate<RigidBody2D>();
 		ball.Position = new Vector2(ScreenSize.X / 2, ScreenSize.Y / 2);
-		ball.LinearVelocity = Vector2.Left * 200;
+		ball.LinearVelocity = Vector2.Left.Rotated(Mathf.Pi / 4) * 500;
 		AddChild(ball);
 	}
 
