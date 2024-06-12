@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b31ubh2fr6atr"]
+
+[ext_resource type="Texture2D" uid="uid://cs8h685i28dfo" path="res://art/sprites.png" id="1_djfn5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m3eto"]
+
+[node name="Ball" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+use_parent_material = true
+shape = SubResource("CircleShape2D_m3eto")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_djfn5")
+region_enabled = true
+region_rect = Rect2(104, 3, 43, 45)

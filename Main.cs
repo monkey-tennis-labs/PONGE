@@ -2,6 +2,8 @@ using Godot;
 
 public partial class Main : Node2D
 {
+	[Export]
+	public PackedScene BallScene { get; set; }
     private Paddle _paddle;
 
     public override void _Ready()
