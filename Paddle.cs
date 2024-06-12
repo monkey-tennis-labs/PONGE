@@ -18,5 +18,6 @@ public partial class Paddle : CharacterBody2D
     public override void _Process(double delta)
     {
         MoveAndCollide(Velocity * (float)delta);
+        Velocity = Vector2.Zero;
     }
 }
