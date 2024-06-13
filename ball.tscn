@@ -10,6 +10,7 @@ collision_layer = 2
 collision_mask = 3
 physics_material_override = ExtResource("1_xqalr")
 gravity_scale = 1.66533e-16
+linear_damp_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 use_parent_material = true

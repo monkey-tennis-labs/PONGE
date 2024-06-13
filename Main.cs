@@ -1,4 +1,3 @@
-using System;
 using Godot;
 
 public partial class Main : Node2D
@@ -11,23 +10,6 @@ public partial class Main : Node2D
         InitializePaddle();
         InitializeBoundaries();
         LaunchBall();
-    }
-
-    public override void _Process(double delta)
-    {
-        CheckInput(delta);
-    }
-
-    private void CheckInput(double delta)
-    {
-        if (Input.IsKeyPressed(Key.Up))
-        {
-            _paddle.MoveUp((float)delta);
-        }
-        else if (Input.IsKeyPressed(Key.Down))
-        {
-            _paddle.MoveDown((float)delta);
-        }
     }
 
     private void InitializePaddle()
@@ -56,7 +38,6 @@ public partial class Main : Node2D
         ball.LinearVelocity = Vector2.Left.Rotated(Mathf.Pi / 4) * 500;
         AddChild(ball);
     }
-
 
     private Vector2 ScreenSize => GetWindow().Size;
 }
