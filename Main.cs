@@ -3,12 +3,14 @@ using Godot;
 public partial class Main : Node2D
 {
     [Export] public PackedScene BallScene { get; set; }
+    [Export] public PackedScene EnemyScene { get; set; }
     private Paddle _paddle;
 
     public override void _Ready()
     {
         InitializePaddle();
         InitializeBoundaries();
+        LaunchEnemy();
         LaunchBall();
     }
 
@@ -37,6 +39,14 @@ public partial class Main : Node2D
         ball.Position = new Vector2(ScreenSize.X / 2, ScreenSize.Y / 2);
         ball.LinearVelocity = Vector2.Left.Rotated(Mathf.Pi / 4) * 500;
         AddChild(ball);
+    }
+
+    private void LaunchEnemy()
+    {
+        RigidBody2D enemy = EnemyScene.Instantiate<RigidBody2D>();
+        enemy.Position = new Vector2(ScreenSize.X, ScreenSize.Y / 2);
+        enemy.LinearVelocity = Vector2.Left * 250;
+        AddChild(enemy);
     }
 
     private Vector2 ScreenSize => GetWindow().Size;

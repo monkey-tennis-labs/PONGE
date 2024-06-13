@@ -1,0 +1,71 @@
+[gd_scene load_steps=14 format=3 uid="uid://ckiw0xnyeyx0j"]
+
+[ext_resource type="Texture2D" uid="uid://buskqo83dm0fg" path="res://art/bluebat/skeleton-fly_00.png" id="1_3ob3v"]
+[ext_resource type="Texture2D" uid="uid://cywm2bk8pq7v0" path="res://art/bluebat/skeleton-fly_01.png" id="2_hr0ad"]
+[ext_resource type="Texture2D" uid="uid://croaxc8eoe1gi" path="res://art/bluebat/skeleton-fly_02.png" id="3_pcft1"]
+[ext_resource type="Texture2D" uid="uid://dl0igq56w4spq" path="res://art/bluebat/skeleton-fly_03.png" id="4_bpx3y"]
+[ext_resource type="Texture2D" uid="uid://cddxda0scdop4" path="res://art/bluebat/skeleton-fly_04.png" id="5_7ccge"]
+[ext_resource type="Texture2D" uid="uid://bjf8ni5r0qj8b" path="res://art/bluebat/skeleton-fly_05.png" id="6_xi5y1"]
+[ext_resource type="Texture2D" uid="uid://b7b5q68ovxgxw" path="res://art/bluebat/skeleton-fly_06.png" id="7_d4y10"]
+[ext_resource type="Texture2D" uid="uid://druytupbwjiat" path="res://art/bluebat/skeleton-fly_07.png" id="8_wbbrc"]
+[ext_resource type="Texture2D" uid="uid://c1bpmxdk6n74l" path="res://art/bluebat/skeleton-fly_08.png" id="9_dsto7"]
+[ext_resource type="Texture2D" uid="uid://328qms2qtexj" path="res://art/bluebat/skeleton-fly_09.png" id="10_bhkcp"]
+[ext_resource type="Texture2D" uid="uid://ccfraj2thm4vw" path="res://art/bluebat/skeleton-fly_10.png" id="11_kqp67"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t80ld"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3ob3v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hr0ad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pcft1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bpx3y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7ccge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xi5y1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_d4y10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wbbrc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_dsto7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_bhkcp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_kqp67")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_txg8p"]
+radius = 205.8
+
+[node name="Enemy" type="RigidBody2D"]
+gravity_scale = 1.66533e-16
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_t80ld")
+animation = &"fly"
+frame_progress = 0.355275
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 1)
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CircleShape2D_txg8p")
