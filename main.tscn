@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Main.cs" id="1_dxvld"]
 [ext_resource type="PackedScene" uid="uid://b31ubh2fr6atr" path="res://ball.tscn" id="2_jkhyo"]
 [ext_resource type="PackedScene" uid="uid://dw1fvopmot46o" path="res://Boundary.tscn" id="3_7s4m7"]
-[ext_resource type="PackedScene" path="res://enemy.tscn" id="3_lbw5i"]
+[ext_resource type="PackedScene" uid="uid://uk0k8cjow7dm" path="res://enemy.tscn" id="3_lbw5i"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_dxvld")

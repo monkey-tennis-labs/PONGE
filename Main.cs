@@ -37,14 +37,15 @@ public partial class Main : Node2D
     {
         RigidBody2D ball = BallScene.Instantiate<RigidBody2D>();
         ball.Position = new Vector2(ScreenSize.X / 2, ScreenSize.Y / 2);
-        ball.LinearVelocity = Vector2.Left.Rotated(Mathf.Pi / 4) * 500;
+        // ball.LinearVelocity = Vector2.Left.Rotated(Mathf.Pi / 4) * 500;
+        ball.LinearVelocity = Vector2.Left * 500;
         AddChild(ball);
     }
 
     private void LaunchEnemy()
     {
         RigidBody2D enemy = EnemyScene.Instantiate<RigidBody2D>();
-        enemy.Position = new Vector2(ScreenSize.X, ScreenSize.Y / 2);
+        enemy.Position = new Vector2(ScreenSize.X - 100, ScreenSize.Y / 2);
         enemy.LinearVelocity = Vector2.Left * 250;
         AddChild(enemy);
     }

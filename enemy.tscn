@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://ckiw0xnyeyx0j"]
+[gd_scene load_steps=15 format=3 uid="uid://uk0k8cjow7dm"]
 
 [ext_resource type="Texture2D" uid="uid://buskqo83dm0fg" path="res://art/bluebat/skeleton-fly_00.png" id="1_3ob3v"]
+[ext_resource type="Script" path="res://Enemy.cs" id="1_nmwsy"]
 [ext_resource type="Texture2D" uid="uid://cywm2bk8pq7v0" path="res://art/bluebat/skeleton-fly_01.png" id="2_hr0ad"]
 [ext_resource type="Texture2D" uid="uid://croaxc8eoe1gi" path="res://art/bluebat/skeleton-fly_02.png" id="3_pcft1"]
 [ext_resource type="Texture2D" uid="uid://dl0igq56w4spq" path="res://art/bluebat/skeleton-fly_03.png" id="4_bpx3y"]
@@ -58,6 +59,9 @@ radius = 205.8
 
 [node name="Enemy" type="RigidBody2D"]
 gravity_scale = 1.66533e-16
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_nmwsy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
@@ -69,3 +73,5 @@ frame_progress = 0.355275
 position = Vector2(-6, 1)
 scale = Vector2(0.3, 0.3)
 shape = SubResource("CircleShape2D_txg8p")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
