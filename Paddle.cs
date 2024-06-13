@@ -5,32 +5,23 @@ public partial class Paddle : CharacterBody2D
 {
     private float _speed = 1000f;
 
-    private void MoveUp(float delta)
-    {
-        Velocity = new Vector2(0, -_speed);
-    }
-
-    private void MoveDown(float delta)
-    {
-        Velocity = new Vector2(0, _speed);
-    }
-
     public override void _Process(double delta)
     {
-        CheckInput(delta);
-        MoveAndCollide(Velocity * (float)delta);
-        Velocity = Vector2.Zero;
+        MoveAndCollide(GetMotion() * (float)delta);
     }
 
-    private void CheckInput(double delta)
+    private Vector2 GetMotion()
     {
         if (Input.IsKeyPressed(Key.Up))
         {
-            MoveUp((float)delta);
+            return new Vector2(0, -_speed);
         }
-        else if (Input.IsKeyPressed(Key.Down))
+
+        if (Input.IsKeyPressed(Key.Down))
         {
-            MoveDown((float)delta);
+            return new Vector2(0, _speed);
         }
+
+        return Vector2.Zero;
     }
 }
