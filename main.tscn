@@ -14,3 +14,5 @@ BallScene = ExtResource("2_jkhyo")
 [node name="TopBoundary" parent="." instance=ExtResource("3_7s4m7")]
 
 [node name="BottomBoundary" parent="." instance=ExtResource("3_7s4m7")]
+
+[node name="RightBoundary" parent="." instance=ExtResource("3_7s4m7")]
