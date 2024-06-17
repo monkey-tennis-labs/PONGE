@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class Main : Node2D
@@ -8,9 +9,12 @@ public partial class Main : Node2D
 
     public override void _Ready()
     {
+		var _timer = new Timer();
+		AddChild(_timer);
+		_timer.Start(3f);
+		_timer.Timeout += LaunchEnemy;
         InitializePaddle();
         InitializeBoundaries();
-        LaunchEnemy();
         LaunchBall();
     }
 
@@ -43,8 +47,11 @@ public partial class Main : Node2D
 
     private void LaunchEnemy()
     {
+		var random = new RandomNumberGenerator();
+		var yPosition = random.RandfRange(100, ScreenSize.Y) - 100;
+		var xPosition = ScreenSize.X;
         RigidBody2D enemy = EnemyScene.Instantiate<RigidBody2D>();
-        enemy.Position = new Vector2(ScreenSize.X - 100, ScreenSize.Y / 2);
+        enemy.Position = new Vector2(ScreenSize.X - 100, yPosition);
         enemy.LinearVelocity = Vector2.Left * 250;
         enemy.GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play();
         AddChild(enemy);
