@@ -18,10 +18,16 @@ public partial class Main : Node2D
         LaunchBall();
     }
 
+    private void UpdateHUD()
+    {
+        GD.Print("PADDLE HIT !!!!!!");
+    }
+
     private void InitializePaddle()
     {
         _paddle = GetNode<Paddle>("Paddle");
         _paddle.Position = new Vector2(ScreenSize.X / 8, ScreenSize.Y / 2);
+        _paddle.HealthChanged += (eventos, argumentos) => UpdateHUD();
     }
 
     private void InitializeBoundaries()

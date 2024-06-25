@@ -3,18 +3,21 @@ using System;
 
 public partial class Paddle : CharacterBody2D
 {
+    public event EventHandler HealthChanged;
     private float _speed = 1000f;
-
+    
     public override void _Process(double delta)
     {
         var collision = MoveAndCollide(GetMotion() * (float)delta);
         if (collision != null) {
-            Hit();
+            GD.Print(delta);
+            var eventargs = new EventArgs();
+            Hit(eventargs);
         }
     }
 
-    public static void Hit() {
-        GD.Print("****HiRT****");
+    public void Hit(EventArgs e) {
+        HealthChanged?.Invoke(this, e);
     }
 
     private Vector2 GetMotion()
