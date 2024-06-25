@@ -7,13 +7,12 @@
 height = 126.0
 
 [node name="Paddle" type="CharacterBody2D"]
-motion_mode = 1
 script = ExtResource("1_evlmx")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_5lks6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_xfmru")
 region_enabled = true
 region_rect = Rect2(58, 12, 34, 126)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_5lks6")

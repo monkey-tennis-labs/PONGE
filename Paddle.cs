@@ -7,7 +7,14 @@ public partial class Paddle : CharacterBody2D
 
     public override void _Process(double delta)
     {
-        MoveAndCollide(GetMotion() * (float)delta);
+        var collision = MoveAndCollide(GetMotion() * (float)delta);
+        if (collision != null) {
+            Hit();
+        }
+    }
+
+    public static void Hit() {
+        GD.Print("****HiRT****");
     }
 
     private Vector2 GetMotion()
