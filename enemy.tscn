@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://uk0k8cjow7dm"]
+[gd_scene load_steps=15 format=3 uid="uid://ckiw0xnyeyx0j"]
 
 [ext_resource type="Texture2D" uid="uid://buskqo83dm0fg" path="res://art/bluebat/skeleton-fly_00.png" id="1_3ob3v"]
 [ext_resource type="Script" path="res://Enemy.cs" id="1_nmwsy"]
@@ -70,8 +70,9 @@ animation = &"fly"
 frame_progress = 0.355275
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-6, 1)
+position = Vector2(-6, -2)
 scale = Vector2(0.3, 0.3)
 shape = SubResource("CircleShape2D_txg8p")
+one_way_collision_margin = 0.0
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

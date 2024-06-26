@@ -5,19 +5,23 @@ public partial class Paddle : CharacterBody2D
 {
     public event EventHandler HealthChanged;
     private float _speed = 1000f;
-    
+
+    private ulong _lastColliderId;
+
+    private int _health = 100;
+
     public override void _Process(double delta)
     {
-        var collision = MoveAndCollide(GetMotion() * (float)delta);
-        if (collision != null) {
-            GD.Print(delta);
-            var eventargs = new EventArgs();
-            Hit(eventargs);
-        }
+        HandleCollision(MoveAndCollide(GetMotion() * (float)delta));
     }
 
-    public void Hit(EventArgs e) {
+
+
+    public void Hit(EventArgs e)
+    {
         HealthChanged?.Invoke(this, e);
+        _health -= 1;
+        GD.Print("health: " + _health);
     }
 
     private Vector2 GetMotion()
@@ -33,5 +37,24 @@ public partial class Paddle : CharacterBody2D
         }
 
         return Vector2.Zero;
+    }
+
+    private void HandleCollision(KinematicCollision2D collision)
+    {
+        if (collision == null)
+        {
+            return;
+        }
+        if (collision == null)
+        {
+            return;
+        }
+        var currentColliderId = collision.GetColliderId();
+        if (currentColliderId != _lastColliderId)
+        {
+            _lastColliderId = currentColliderId;
+            var eventargs = new EventArgs();
+            Hit(eventargs);
+        }
     }
 }
