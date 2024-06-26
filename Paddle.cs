@@ -3,7 +3,7 @@ using System;
 
 public partial class Paddle : CharacterBody2D
 {
-    public event EventHandler HealthChanged;
+    public event EventHandler<PaddleHealthArgs> HealthChanged;
     private float _speed = 1000f;
 
     private ulong _lastColliderId;
@@ -16,11 +16,9 @@ public partial class Paddle : CharacterBody2D
     }
 
 
-
-    public void Hit(EventArgs e)
+    public void Hit(PaddleHealthArgs e)
     {
         HealthChanged?.Invoke(this, e);
-        _health -= 1;
         GD.Print("health: " + _health);
     }
 
@@ -45,16 +43,23 @@ public partial class Paddle : CharacterBody2D
         {
             return;
         }
-        if (collision == null)
-        {
-            return;
-        }
+
         var currentColliderId = collision.GetColliderId();
         if (currentColliderId != _lastColliderId)
         {
             _lastColliderId = currentColliderId;
-            var eventargs = new EventArgs();
-            Hit(eventargs);
+            _health--;
+            Hit(new PaddleHealthArgs(_health));
         }
+    }
+}
+
+public class PaddleHealthArgs : EventArgs
+{
+    public int Health { get; set; }
+
+    public PaddleHealthArgs(int health)
+    {
+        Health = health;
     }
 }

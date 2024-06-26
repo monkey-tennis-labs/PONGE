@@ -1,14 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://l2ijd5epcohn"]
+[gd_scene load_steps=3 format=3 uid="uid://l2ijd5epcohn"]
 
 [ext_resource type="Script" path="res://HUD.cs" id="1_hcxwr"]
 
-[node name="Hud" type="CanvasLayer"]
+[sub_resource type="LabelSettings" id="LabelSettings_1tvgo"]
+font_size = 64
+
+[node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_hcxwr")
 
 [node name="Health" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
-text = "Health"
+text = "100"
+label_settings = SubResource("LabelSettings_1tvgo")
 
 [node name="NewGame" type="Label" parent="."]
 offset_right = 40.0

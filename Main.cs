@@ -9,16 +9,17 @@ public partial class Main : Node2D
 
     public override void _Ready()
     {
-		var _timer = new Timer();
-		AddChild(_timer);
-		_timer.Start(3f);
-		_timer.Timeout += LaunchEnemy;
+        var _timer = new Timer();
+        AddChild(_timer);
+        _timer.Start(3f);
+        _timer.Timeout += LaunchEnemy;
         InitializePaddle();
         InitializeBoundaries();
+        InitializeHud();
         LaunchBall();
     }
 
-    private void UpdateHUD()
+    private void UpdateHud()
     {
         GD.Print("PADDLE HIT !!!!!!");
     }
@@ -27,7 +28,13 @@ public partial class Main : Node2D
     {
         _paddle = GetNode<Paddle>("Paddle");
         _paddle.Position = new Vector2(ScreenSize.X / 8, ScreenSize.Y / 2);
-        _paddle.HealthChanged += (eventos, argumentos) => UpdateHUD();
+        _paddle.HealthChanged += (eventos, argumentos) => UpdateHud();
+    }
+
+    private void InitializeHud()
+    {
+        var hud = GetNode<HUD>("HUD");
+        _paddle.HealthChanged += (sender, args) => hud.UpdateHealth(args.Health);
     }
 
     private void InitializeBoundaries()
@@ -53,9 +60,9 @@ public partial class Main : Node2D
 
     private void LaunchEnemy()
     {
-		var random = new RandomNumberGenerator();
-		var yPosition = random.RandfRange(100, ScreenSize.Y) - 100;
-		var xPosition = ScreenSize.X;
+        var random = new RandomNumberGenerator();
+        var yPosition = random.RandfRange(100, ScreenSize.Y) - 100;
+        var xPosition = ScreenSize.X;
         RigidBody2D enemy = EnemyScene.Instantiate<RigidBody2D>();
         enemy.Position = new Vector2(ScreenSize.X - 100, yPosition);
         enemy.LinearVelocity = Vector2.Left * 250;
