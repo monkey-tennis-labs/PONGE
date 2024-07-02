@@ -5,24 +5,22 @@ public partial class Paddle : CharacterBody2D
 {
     public event EventHandler<PaddleHealthArgs> HealthChanged;
     private float _speed = 1000f;
-
     private ulong _lastColliderId;
-
     private int _health = 100;
 
     public override void _Process(double delta)
     {
-        HandleCollision(MoveAndCollide(GetMotion() * (float)delta));
+        var motion = NewVelocity() * (float)delta;
+        HandleCollision(MoveAndCollide(motion));
     }
-
-
-    public void Hit(PaddleHealthArgs e)
+    
+    private void TakeDamage()
     {
-        HealthChanged?.Invoke(this, e);
+        HealthChanged?.Invoke(this, new PaddleHealthArgs(_health));
         GD.Print("health: " + _health);
     }
 
-    private Vector2 GetMotion()
+    private Vector2 NewVelocity()
     {
         if (Input.IsKeyPressed(Key.Up))
         {
@@ -39,18 +37,19 @@ public partial class Paddle : CharacterBody2D
 
     private void HandleCollision(KinematicCollision2D collision)
     {
-        if (collision == null)
+        if (collision == null || SameCollider(collision))
         {
             return;
         }
 
-        var currentColliderId = collision.GetColliderId();
-        if (currentColliderId != _lastColliderId)
-        {
-            _lastColliderId = currentColliderId;
-            _health--;
-            Hit(new PaddleHealthArgs(_health));
-        }
+        _lastColliderId = collision.GetColliderId();
+        _health--;
+        TakeDamage();
+    }
+
+    private bool SameCollider(KinematicCollision2D collision)
+    {
+        return collision.GetColliderId() == _lastColliderId;
     }
 }
 
