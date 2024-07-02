@@ -7,17 +7,24 @@ public partial class Paddle : CharacterBody2D
     private float _speed = 1000f;
     private ulong _lastColliderId;
     private int _health = 100;
+    private int _collisionCount = 0;
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         var motion = NewVelocity() * (float)delta;
-        HandleCollision(MoveAndCollide(motion));
+        MoveAndCollide(motion);
     }
-    
+
+    public void OnArea2dBodyEntered(Node2D body)
+    {
+        TakeDamage();
+    }
+
     private void TakeDamage()
     {
+        _health--;
         HealthChanged?.Invoke(this, new PaddleHealthArgs(_health));
-        GD.Print("health: " + _health);
+        // GD.Print("health: " + _health);
     }
 
     private Vector2 NewVelocity()
@@ -42,6 +49,8 @@ public partial class Paddle : CharacterBody2D
             return;
         }
 
+        _collisionCount++;
+        GD.Print("Collision count: " + _collisionCount + ", Current collider: " + collision.GetColliderId());
         _lastColliderId = collision.GetColliderId();
         _health--;
         TakeDamage();
