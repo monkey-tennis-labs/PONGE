@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b31y3x2dgxkik"]
+
+[ext_resource type="Script" path="res://BallManager.cs" id="1_xpe0o"]
+[ext_resource type="PackedScene" path="res://ball.tscn" id="2_lilxe"]
+
+[node name="BallManager" type="Node"]
+script = ExtResource("1_xpe0o")
+BallScene = ExtResource("2_lilxe")

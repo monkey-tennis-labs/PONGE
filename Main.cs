@@ -3,9 +3,9 @@ using Godot;
 
 public partial class Main : Node2D
 {
-    [Export] public PackedScene BallScene { get; set; }
     [Export] public PackedScene EnemyScene { get; set; }
     private Paddle _paddle;
+    private BallManager _ballManager;
 
     public override void _Ready()
     {
@@ -16,7 +16,7 @@ public partial class Main : Node2D
         InitializePaddle();
         InitializeBoundaries();
         InitializeHud();
-        LaunchBall();
+        InitializeBallManager();
     }
 
     private void UpdateHud()
@@ -29,6 +29,11 @@ public partial class Main : Node2D
         _paddle = GetNode<Paddle>("Paddle");
         _paddle.Position = new Vector2(ScreenSize.X / 8, ScreenSize.Y / 2);
         _paddle.HealthChanged += (eventos, argumentos) => UpdateHud();
+    }
+
+        private void InitializeBallManager()
+    {
+        _ballManager = GetNode<BallManager>("BallManager");
     }
 
     private void InitializeHud()
@@ -48,14 +53,6 @@ public partial class Main : Node2D
         var rightBoundary = GetNode<StaticBody2D>("RightBoundary");
         rightBoundary.Position = new Vector2(ScreenSize.X, 0);
         rightBoundary.Rotation = -Mathf.Pi / 2;
-    }
-
-    private void LaunchBall()
-    {
-        RigidBody2D ball = BallScene.Instantiate<RigidBody2D>();
-        ball.Position = new Vector2(ScreenSize.X / 2, ScreenSize.Y / 2);
-        ball.LinearVelocity = Vector2.Left.Rotated(Mathf.Pi / 4) * 500;
-        AddChild(ball);
     }
 
     private void LaunchEnemy()
