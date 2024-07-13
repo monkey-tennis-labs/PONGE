@@ -7,6 +7,8 @@ public partial class Main : Node2D
     private Paddle _paddle;
     private BallManager _ballManager;
 
+    private int _score = 0;
+
     public override void _Ready()
     {
         var _timer = new Timer();
@@ -19,16 +21,19 @@ public partial class Main : Node2D
         InitializeBallManager();
     }
 
-    private void UpdateHud()
+    private void UpdateScore()
     {
-        GD.Print("PADDLE HIT !!!!!!");
+        _score += 1;
+        GD.Print("Score !!!!!!!!", _score);
+        if(_score % 3 == 0){
+            _ballManager.LaunchBall();
+        }
     }
 
     private void InitializePaddle()
     {
         _paddle = GetNode<Paddle>("Paddle");
         _paddle.Position = new Vector2(ScreenSize.X / 8, ScreenSize.Y / 2);
-        _paddle.HealthChanged += (eventos, argumentos) => UpdateHud();
     }
 
         private void InitializeBallManager()
@@ -60,11 +65,12 @@ public partial class Main : Node2D
         var random = new RandomNumberGenerator();
         var yPosition = random.RandfRange(100, ScreenSize.Y) - 100;
         var xPosition = ScreenSize.X;
-        RigidBody2D enemy = EnemyScene.Instantiate<RigidBody2D>();
+        var enemy = EnemyScene.Instantiate<Enemy>();
         enemy.Position = new Vector2(ScreenSize.X - 100, yPosition);
         enemy.LinearVelocity = Vector2.Left * 250;
         enemy.GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play();
         AddChild(enemy);
+        enemy.EnemyDestroyed += (eventos, argumentos) => UpdateScore();
     }
 
     private Vector2 ScreenSize => GetWindow().Size;
