@@ -1,17 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcex5yrbrlicy"]
+[gd_scene load_steps=6 format=3 uid="uid://bcex5yrbrlicy"]
 
 [ext_resource type="Script" path="res://Paddle.cs" id="1_evlmx"]
 [ext_resource type="Texture2D" uid="uid://cs8h685i28dfo" path="res://art/sprites.png" id="1_xfmru"]
+[ext_resource type="ArrayMesh" uid="uid://dyy5btusarm4v" path="res://Blender/testPaddle.obj" id="3_6jpiq"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5lks6"]
-radius = 19.0
-height = 136.0
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_14gg8"]
+radius = 1.18627
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1yxkn"]
 radius = 23.0
 height = 146.0
 
-[node name="Paddle" type="CharacterBody2D"]
+[node name="Paddle" type="CharacterBody3D"]
 collision_layer = 5
 script = ExtResource("1_evlmx")
 
@@ -20,8 +20,9 @@ texture = ExtResource("1_xfmru")
 region_enabled = true
 region_rect = Rect2(58, 12, 34, 126)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_5lks6")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -2.62268e-07, -1, 0, 6, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_14gg8")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
@@ -29,5 +30,8 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_1yxkn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("3_6jpiq")
 
 [connection signal="body_entered" from="Area2D" to="." method="OnArea2dBodyEntered"]

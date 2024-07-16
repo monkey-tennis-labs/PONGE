@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bcex5yrbrlicy" path="res://paddle.tscn" id="1_dimub"]
 [ext_resource type="Script" path="res://Main.cs" id="1_dxvld"]
 [ext_resource type="PackedScene" uid="uid://dw1fvopmot46o" path="res://Boundary.tscn" id="3_7s4m7"]
-[ext_resource type="PackedScene" path="res://enemy.tscn" id="3_lbw5i"]
+[ext_resource type="PackedScene" uid="uid://ckiw0xnyeyx0j" path="res://enemy.tscn" id="3_lbw5i"]
 [ext_resource type="PackedScene" uid="uid://b31y3x2dgxkik" path="res://ball_manager.tscn" id="6_2ssqp"]
 [ext_resource type="PackedScene" uid="uid://l2ijd5epcohn" path="res://HUD.tscn" id="6_q1n3m"]
 

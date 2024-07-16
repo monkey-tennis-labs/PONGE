@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Paddle : CharacterBody2D
+public partial class Paddle : CharacterBody3D
 {
     public event EventHandler<PaddleHealthArgs> HealthChanged;
     private float _speed = 1000f;
@@ -15,7 +15,7 @@ public partial class Paddle : CharacterBody2D
         MoveAndCollide(motion);
     }
 
-    public void OnArea2dBodyEntered(Node2D body)
+    public void OnArea2dBodyEntered(Node3D body)
     {
         TakeDamage();
     }
@@ -27,22 +27,22 @@ public partial class Paddle : CharacterBody2D
         // GD.Print("health: " + _health);
     }
 
-    private Vector2 NewVelocity()
+    private Vector3 NewVelocity()
     {
         if (Input.IsKeyPressed(Key.Up))
         {
-            return new Vector2(0, -_speed);
+            return new Vector3(0, -_speed,0);
         }
 
         if (Input.IsKeyPressed(Key.Down))
         {
-            return new Vector2(0, _speed);
+            return new Vector3(0, _speed, 0);
         }
 
-        return Vector2.Zero;
+        return Vector3.Zero;
     }
 
-    private void HandleCollision(KinematicCollision2D collision)
+    private void HandleCollision(KinematicCollision3D collision)
     {
         if (collision == null || SameCollider(collision))
         {
@@ -56,7 +56,7 @@ public partial class Paddle : CharacterBody2D
         TakeDamage();
     }
 
-    private bool SameCollider(KinematicCollision2D collision)
+    private bool SameCollider(KinematicCollision3D collision)
     {
         return collision.GetColliderId() == _lastColliderId;
     }
