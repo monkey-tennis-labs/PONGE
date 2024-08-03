@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://biookv16x01mc"]
+
+[ext_resource type="PackedScene" uid="uid://cekxbimwk0xh8" path="res://art/3DPaddle/paddle.glb" id="1_4riua"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tkc3e"]
+height = 12.3144
+radius = 1.11344
+
+[node name="Paddle3D" type="CharacterBody3D"]
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="paddle" parent="Pivot" instance=ExtResource("1_4riua")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_tkc3e")
