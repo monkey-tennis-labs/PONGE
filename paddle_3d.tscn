@@ -7,6 +7,7 @@ height = 12.3144
 radius = 1.11344
 
 [node name="Paddle3D" type="CharacterBody3D"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 
 [node name="Pivot" type="Node3D" parent="."]
 
